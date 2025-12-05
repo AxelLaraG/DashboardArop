@@ -1,45 +1,28 @@
 <section class="dashboard-container">
-  
   <div class="welcome-banner">
     <h2>{{ stats().title }}</h2>
     <p>Resumen de actividad en tiempo real</p>
   </div>
 
   <div class="stats-grid">
-    
     <div class="card card-sales">
-      <div class="icon">📈</div>
+      <div class="icon-wrapper" [innerHTML]="iconSales"></div>
+
       <div class="info">
         <h3>Ventas Totales</h3>
-        <p class="value">{{ stats().sales | currency:'USD' }}</p>
+        <p class="value text-green">{{ stats().sales | currency:'USD' }}</p>
+        <p class="subtext"><span class="trend-up">▲ 15%</span> más que el mes pasado</p>
       </div>
     </div>
 
-    <div class="card card-profit">
-      <div class="icon">💵</div>
-      <div class="info">
-        <h3>Ganancias Netas</h3>
-        <p class="value">{{ stats().profits | currency:'USD' }}</p>
-      </div>
-    </div>
+    <div class="card card-alerts">
+      <div class="icon-wrapper" [innerHTML]="iconAlert"></div>
 
-    <div class="card card-orders">
-      <div class="icon">📦</div>
-      <div class="info">
-        <h3>Pedidos Totales</h3>
-        <p class="value">{{ stats().orders | number }}</p>
-        <small>{{ stats().pendingOrders }} pendientes de envío</small>
-      </div>
-    </div>
-
-    <div class="card card-alerts" [class.danger]="stats().inventoryAlerts > 0">
-      <div class="icon">⚠️</div>
       <div class="info">
         <h3>Alertas de Inventario</h3>
-        <p class="value">{{ stats().inventoryAlerts }}</p>
+        <p class="value text-orange">{{ stats().inventoryAlerts }}</p>
         <small>Productos con stock bajo</small>
       </div>
     </div>
-
   </div>
 </section>

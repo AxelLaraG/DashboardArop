@@ -7,7 +7,7 @@ $text-secondary: #6b7280;
 // --- Variables Liquid Glass ---
 $glass-bg: rgba(255, 255, 255, 0.25);
 $glass-border: rgba(255, 255, 255, 0.5);
-$glass-shadow: 
+$glass-shadow:
   0 8px 32px 0 rgba(31, 38, 135, 0.1),
   0 2px 8px 0 rgba(31, 38, 135, 0.05);
 $liquid-highlight:
@@ -24,32 +24,26 @@ $tooltip-bg: rgba(255, 255, 255, 0.95);
   font-family: 'Segoe UI', sans-serif;
 }
 
-// --- Top Bar (Navbar Flotante) ---
 .top-bar {
   position: sticky;
-  top: 20px; // Espacio desde arriba al hacer scroll
+  top: 20px;
   z-index: 1000;
-  
-  // --- AQUI ESTA EL CAMBIO ---
-  // Hacemos que ocupe el 100% menos unos 40px (20px por lado)
-  width: calc(100% - 140px); 
-  // La centramos horizontalmente con 'auto' y damos 20px de margen vertical
-  margin: 20px auto; 
-  // ---------------------------
+
+  width: calc(100% - 140px);
+  margin: 20px auto;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1.5rem;
-  
-  // Efecto Cristal
+
   background: $glass-bg;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  
+
   border: 1px solid $glass-border;
   border-top: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 24px; // Bordes redondeados para el efecto "pastilla"
+  border-radius: 24px;
   box-shadow: $glass-shadow, $liquid-highlight;
 
   .brand {
@@ -69,7 +63,7 @@ $tooltip-bg: rgba(255, 255, 255, 0.95);
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    
+
     .menu-item {
       display: flex;
       align-items: center;
@@ -90,7 +84,6 @@ $tooltip-bg: rgba(255, 255, 255, 0.95);
         justify-content: center;
       }
 
-      // Tooltip inferior
       .label {
         position: absolute;
         top: 120%;
@@ -103,7 +96,7 @@ $tooltip-bg: rgba(255, 255, 255, 0.95);
         border: 1px solid white;
         padding: 4px 10px;
         border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         color: $text-dark;
         font-size: 0.75rem;
         font-weight: 600;
@@ -140,7 +133,7 @@ $tooltip-bg: rgba(255, 255, 255, 0.95);
         background: white;
         color: $primary;
         box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-        
+
         &::after {
           content: '';
           position: absolute;
@@ -170,7 +163,9 @@ $tooltip-bg: rgba(255, 255, 255, 0.95);
       outline: none;
       transition: all 0.3s ease;
 
-      &::placeholder { color: $text-secondary; }
+      &::placeholder {
+        color: $text-secondary;
+      }
 
       &:focus {
         background: rgba(255, 255, 255, 0.9);
@@ -190,8 +185,11 @@ $tooltip-bg: rgba(255, 255, 255, 0.95);
       justify-content: center;
       cursor: pointer;
       transition: transform 0.2s;
-      
-      &:hover { transform: scale(1.05); background: white; }
+
+      &:hover {
+        transform: scale(1.05);
+        background: white;
+      }
 
       .avatar-mini {
         width: 32px;
@@ -203,26 +201,27 @@ $tooltip-bg: rgba(255, 255, 255, 0.95);
   }
 }
 
-// Contenido principal
-.content-area {
-  width: 100%;
-  max-width: 1600px; // Un límite opcional para pantallas muy anchas
-  margin: 0 auto;
-  padding: 0 20px 40px 20px; // Padding lateral igual a los márgenes del topbar
-  
-  .page-content {
-    // Aquí iría el contenido de tus páginas
-  }
+.page-content {
+  margin-left: 80px;
+  padding: 20px;
+  min-height: 100vh;
+  margin-right: 80px;
 }
 
-// Mobile
 @media (max-width: 768px) {
   .top-bar {
-    width: calc(100% - 20px); // Márgenes más pequeños en móvil
+    width: calc(100% - 20px);
     margin: 10px auto;
     padding: 0.75rem;
-    
-    .brand h2 { display: none; }
-    .search-container input { width: 120px; &:focus { width: 100%; } }
+
+    .brand h2 {
+      display: none;
+    }
+    .search-container input {
+      width: 120px;
+      &:focus {
+        width: 100%;
+      }
+    }
   }
 }

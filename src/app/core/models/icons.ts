@@ -61,5 +61,14 @@ export const icons = {
       height="100%"
       width="100%"
     ></animated-icons>
+  `,
+  money: `
+    <animated-icons
+      src="https://animatedicons.co/get-icon?name=Income&style=minimalistic&token=ca37a84b-da2e-4cf2-8edd-d0210474f04d"
+      trigger="loop"
+      attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#000000","group-2":"#536DFE","background":"#FFFFFF"}}'
+      height="100%"
+      width="100%"
+    ></animated-icons>
   `
 };
