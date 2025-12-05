@@ -1,59 +1,77 @@
 $primary: #2563eb;
 $bg-light: #f3f4f6;
-$glass-border: rgba(255, 255, 255, 0.1);
 $text-primary: #ffffff;
 $text-secondary: #a1a1aa;
 $text-white: #ffffff;
+
+$glass-bg: rgba(255, 255, 255, 0.15);
+$glass-border: rgba(255, 255, 255, 0.4);
+$glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+$liquid-highlight:
+  inset 0 0 10px rgba(255, 255, 255, 0.3),
+  inset 0 0 2px rgba(255, 255, 255, 0.5);
+
+$glass-bg-bubble: rgba(255, 255, 255, 0.45);
+$glass-border-bubble: rgba(255, 255, 255, 0.6);
 
 .layout-wrapper {
   display: block;
   position: relative;
   min-height: 100vh;
-  background-color: $bg-light;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 50%, #dbeafe 100%);
 }
 
 .sidebar {
   position: fixed;
-  top: 50%; 
+  top: 50%;
   left: 20px;
   transform: translateY(-50%);
-  
-  bottom: auto; 
+  bottom: auto;
   height: auto;
-  max-height: 90vh; 
-  
-  width: 80px;
+  max-height: 90vh;
+  width: 90px;
   z-index: 1000;
 
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: $glass-bg;
+
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+
   border: 1px solid $glass-border;
-  border-radius: 24px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
+
+  border-radius: 35px;
+  box-shadow: $glass-shadow, $liquid-highlight;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem 0;
-  
-  overflow-y: auto; 
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
-  &::-webkit-scrollbar { display: none; } 
+  padding: 2rem 0;
+
+  overflow-y: visible;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .brand {
-    margin-bottom: 1.5rem; 
-    writing-mode: vertical-rl; 
+    margin-bottom: 2rem;
+    writing-mode: vertical-rl;
     text-orientation: mixed;
-    transform: rotate(180deg); 
+    transform: rotate(180deg);
+
     h2 {
       margin: 0;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      color: $text-secondary;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      background: linear-gradient(to bottom, #ffffff, #d1d5db);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 800;
+      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
     }
 
     .role-badge {
@@ -64,7 +82,7 @@ $text-white: #ffffff;
   .menu {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     width: 100%;
     align-items: center;
   }
@@ -73,34 +91,98 @@ $text-white: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    color: $text-secondary;
-    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    border-radius: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
 
     .icon {
       display: flex;
       align-items: center;
       justify-content: center;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .label {
+      position: absolute;
+      left: 65px;
+      top: 50%;
+      transform: translateY(-50%) translateX(-15px);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      background: $glass-bg-bubble;
+      backdrop-filter: blur(15px) saturate(150%);
+      -webkit-backdrop-filter: blur(15px) saturate(150%);
+      border: 1px solid $glass-border-bubble;
+      box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 0 8px rgba(255, 255, 255, 0.2);
+
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      color: #1f2937;
+      font-weight: 700;
+      font-size: 0.85rem;
+      z-index: 1010;
+
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 6px 6px 6px 0;
+        border-style: solid;
+        border-color: transparent $glass-border-bubble transparent transparent;
+      }
     }
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: $text-primary;
-      transform: scale(1.05); // Pequeño efecto visual extra
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+
+      .label {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) translateX(0); 
+      }
     }
 
     &.active {
-      background: rgba(255, 255, 255, 0.15);
-      color: $text-primary;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+        inset 0 2px 5px rgba(255, 255, 255, 0.5);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        width: 4px;
+        height: 4px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #fff;
+      }
     }
   }
 }
 
 .content-area {
-  margin-left: 300px;
+  margin-left: 130px;
   padding: 20px;
   min-height: 100vh;
 

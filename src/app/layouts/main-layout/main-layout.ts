@@ -33,7 +33,7 @@ export class MainLayout {
   readonly menuItems = computed<MenuItem[]>(() => {
     if (this.auth.isAdmin()) {
       return [
-        { label: 'Dashboard Administrador', route: '/dashboard', icon: this.getIcon(icons.dashboard) },
+        { label: 'Dashboard', route: '/dashboard', icon: this.getIcon(icons.dashboard) },
         { label: 'Usuarios', route: '/dashboard/users', icon: this.getIcon(icons.users) },
         { label: 'Tiendas', route: '/dashboard/stores', icon: this.getIcon(icons.store) },
         { label: 'Productos', route: '/dashboard/products', icon: this.getIcon(icons.productos) },
@@ -41,7 +41,7 @@ export class MainLayout {
       ];
     } else { 
       return [
-        { label: 'Dashboard Dueño', route: '/dashboard', icon: this.getIcon(icons.dashboard) },
+        { label: 'Dashboard', route: '/dashboard', icon: this.getIcon(icons.dashboard) },
         { label: 'Tienda', route: '/dashboard/store', icon: this.getIcon(icons.store) },
         { label: 'Productos', route: '/dashboard/products', icon: this.getIcon(icons.productos) },
         { label: 'Pedidos', route: '/dashboard/orders', icon: this.getIcon(icons.pedidos) }
