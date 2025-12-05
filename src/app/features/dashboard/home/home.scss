@@ -1,0 +1,49 @@
+.welcome-banner {
+  margin-bottom: 2rem;
+  h2 { margin: 0; font-size: 1.5rem; color: #1f2937; }
+  p { margin: 5px 0 0; color: #6b7280; }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  .icon {
+    font-size: 2rem;
+    background: #f3f4f6;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info {
+    h3 { margin: 0 0 5px; font-size: 0.9rem; color: #6b7280; font-weight: 500; }
+    .value { margin: 0; font-size: 1.5rem; font-weight: 700; color: #111827; }
+    small { font-size: 0.8rem; color: #f59e0b; }
+  }
+
+  // Variante para alertas
+  &.danger {
+    border-left: 4px solid #ef4444;
+    .info small { color: #ef4444; font-weight: bold; }
+  }
+}

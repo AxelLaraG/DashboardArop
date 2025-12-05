@@ -1,0 +1,240 @@
+// Variables
+$bg-dark: #121212; // Fondo muy oscuro
+$glass-bg: rgba(255, 255, 255, 0.05); // Fondo cristal
+$glass-border: rgba(255, 255, 255, 0.1); // Borde cristal
+$text-primary: #ffffff;
+$text-secondary: #a1a1aa;
+$accent-color: #f97316; // Naranja para alertas/acentos
+$success-color: #22c55e;
+
+.layout-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: $bg-dark;
+  color: $text-primary;
+  font-family: 'Inter', sans-serif; // Asegurar fuente moderna si está disponible
+  overflow: hidden; // Evitar scroll en el body si el contenido hace scroll
+}
+
+// --- Sidebar ---
+.sidebar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  bottom: 20px;
+  width: 80px; // Sidebar colapsado/estrecho como en la imagen
+  z-index: 1000;
+
+  // Glassmorphism
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid $glass-border;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Centrar items
+  padding: 1.5rem 0;
+
+  .brand {
+    margin-bottom: 2rem;
+    writing-mode: vertical-rl; // Texto vertical como en la imagen "NAVBAR"
+    text-orientation: mixed;
+    transform: rotate(180deg); // Ajuste para lectura de abajo a arriba si se desea
+
+    h2 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: $text-secondary;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .role-badge {
+      display: none;
+    }
+
+    // Ocultar badge en modo colapsado
+  }
+
+  .menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    color: $text-secondary;
+    transition: all 0.3s ease;
+
+    .icon {
+      font-size: 1.2rem;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: $text-primary;
+    }
+
+    &.active {
+      background: rgba(255, 255, 255, 0.15);
+      color: $text-primary;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .footer {
+    margin-top: auto;
+
+    .user-info {
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+
+      .details {
+        display: none;
+      }
+
+      // Ocultar detalles en modo colapsado
+    }
+  }
+}
+
+// --- Content ---
+.content-area {
+  flex: 1;
+  margin-left: 120px; // Espacio para el sidebar (80px + 20px gap + 20px left)
+  padding: 20px 20px 20px 0; // Padding derecho e inferior
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto; // Scroll en el contenido
+
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    // Glassmorphism
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid $glass-border;
+    border-radius: 20px; // Pill shape
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 30px;
+
+    .search-container {
+      flex: 1;
+      max-width: 400px;
+
+      input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 8px;
+        padding: 10px 16px;
+        color: $text-primary;
+        font-size: 0.9rem;
+        outline: none;
+        transition: background 0.2s;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.4);
+          text-transform: uppercase;
+          font-size: 0.8rem;
+          letter-spacing: 1px;
+        }
+
+        &:focus {
+          background: rgba(255, 255, 255, 0.15);
+        }
+      }
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .notification-btn {
+        background: none;
+        border: none;
+        color: $text-primary;
+        cursor: pointer;
+        position: relative;
+
+        i {
+          font-size: 1.2rem;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: -2px;
+          right: -2px;
+          width: 8px;
+          height: 8px;
+          background: $accent-color;
+          border-radius: 50%;
+        }
+      }
+
+      .profile-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 6px 16px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background 0.2s;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+        }
+
+        span {
+          font-size: 0.85rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .avatar-mini {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: #6366f1;
+        }
+      }
+    }
+  }
+
+  .page-content {
+    flex: 1;
+    // El contenido de las páginas también necesitará ajustes para dark mode, 
+    // pero eso depende de cada componente. Aquí aseguramos el contenedor.
+  }
+}

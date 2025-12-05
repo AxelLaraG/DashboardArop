@@ -1,0 +1,156 @@
+// src/app/features/auth/login/login.scss
+
+// Variables de colores (simulando Tailwind)
+$gray-100: #f3f4f6;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$blue-500: #3b82f6;
+$blue-600: #2563eb;
+$blue-700: #1d4ed8;
+$red-100: #fee2e2;
+$red-200: #fecaca;
+$red-500: #ef4444;
+$red-700: #b91c1c;
+
+// Contenedor principal (Centrado en pantalla)
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: $gray-100;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+// Tarjeta del login
+.login-card {
+  width: 100%;
+  max-width: 28rem; // ~450px
+  border-radius: 0.5rem;
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  // Estilos para el encabezado (que usaba clases utilitarias en el HTML)
+  .text-center {
+    text-align: center;
+    margin-bottom: 1.5rem; // mb-6
+  }
+
+  h1 {
+    font-size: 1.5rem; // text-2xl
+    font-weight: 700; // font-bold
+    color: $gray-800;
+    margin: 0;
+  }
+
+  p {
+    font-size: 0.875rem; // text-sm
+    color: $gray-500;
+    margin-top: 0.5rem;
+  }
+}
+
+// Alerta de error
+.error-alert {
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  background-color: $red-100;
+  border: 1px solid $red-200;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  color: $red-700;
+  animation: pulse 2s infinite;
+}
+
+// Grupos del formulario
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem; // Espacio entre inputs
+
+  label {
+    margin-bottom: 0.25rem;
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $gray-700;
+  }
+
+  input {
+    width: 100%;
+    border-radius: 0.25rem;
+    border: 1px solid $gray-300;
+    padding: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    box-sizing: border-box; // Importante para que el padding no rompa el ancho
+
+    &:focus {
+      outline: none;
+      border-color: $blue-500;
+      box-shadow: 0 0 0 1px $blue-500;
+    }
+
+    &.input-error {
+      border-color: $red-500;
+      &:focus {
+        box-shadow: 0 0 0 1px $red-500;
+      }
+    }
+  }
+
+  span.text-xs {
+    font-size: 0.75rem;
+    color: $red-500;
+    margin-top: 0.25rem;
+  }
+}
+
+// Botón de enviar
+.submit-btn {
+  width: 100%;
+  border-radius: 0.25rem;
+  background-color: $blue-600;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: 700;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
+
+  &:hover:not(:disabled) {
+    background-color: $blue-700;
+  }
+
+  &:disabled {
+    background-color: $gray-400;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+// Pistas de desarrollo
+.dev-hints {
+  margin-top: 1.5rem;
+  border-top: 1px solid $gray-300;
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: $gray-400;
+
+  p {
+    margin-bottom: 0.25rem;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .7; }
+}

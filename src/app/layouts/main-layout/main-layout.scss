@@ -1,0 +1,125 @@
+$primary: #2563eb;
+$bg-light: #f3f4f6;
+$glass-border: rgba(255, 255, 255, 0.1);
+$text-primary: #ffffff;
+$text-secondary: #a1a1aa;
+$text-white: #ffffff;
+
+.layout-wrapper {
+  display: block;
+  position: relative;
+  min-height: 100vh;
+  background-color: $bg-light;
+}
+
+.sidebar {
+  position: fixed;
+  top: 50%; 
+  left: 20px;
+  transform: translateY(-50%);
+  
+  bottom: auto; 
+  height: auto;
+  max-height: 90vh; 
+  
+  width: 80px;
+  z-index: 1000;
+
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid $glass-border;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0;
+  
+  overflow-y: auto; 
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+  &::-webkit-scrollbar { display: none; } 
+
+  .brand {
+    margin-bottom: 1.5rem; 
+    writing-mode: vertical-rl; 
+    text-orientation: mixed;
+    transform: rotate(180deg); 
+    h2 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: $text-secondary;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .role-badge {
+      display: none;
+    }
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    color: $text-secondary;
+    transition: all 0.3s ease;
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: $text-primary;
+      transform: scale(1.05); // Pequeño efecto visual extra
+    }
+
+    &.active {
+      background: rgba(255, 255, 255, 0.15);
+      color: $text-primary;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.content-area {
+  margin-left: 300px;
+  padding: 20px;
+  min-height: 100vh;
+
+  .top-bar {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 20px;
+
+    h1 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: #111827;
+      font-weight: 700;
+    }
+  }
+
+  .page-content {
+    padding: 0;
+  }
+}

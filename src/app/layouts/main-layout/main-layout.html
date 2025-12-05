@@ -1,0 +1,35 @@
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <nav class="menu">
+      @for (item of menuItems(); track item.label) {
+      <a
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="menu-item"
+      >
+        <div class="icon" [innerHTML]="item.icon"></div>
+      </a>
+      }
+    </nav>
+  </aside>
+
+  <main class="content-area">
+    <header class="top-bar">
+      <div class="search-container">
+        <input type="text" placeholder="BARRA BÚSQUEDA" />
+      </div>
+
+      <div class="actions">
+        <div class="profile-pill">
+          <span>PERFIL</span>
+          <div class="avatar-mini"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <router-outlet />
+    </div>
+  </main>
+</div>
