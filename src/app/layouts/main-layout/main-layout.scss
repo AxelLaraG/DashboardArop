@@ -1,207 +1,228 @@
+// Variables
 $primary: #2563eb;
 $bg-light: #f3f4f6;
-$text-primary: #ffffff;
-$text-secondary: #a1a1aa;
-$text-white: #ffffff;
+$text-dark: #1f2937;
+$text-secondary: #6b7280;
 
-$glass-bg: rgba(255, 255, 255, 0.15);
-$glass-border: rgba(255, 255, 255, 0.4);
-$glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+// --- Variables Liquid Glass ---
+$glass-bg: rgba(255, 255, 255, 0.25);
+$glass-border: rgba(255, 255, 255, 0.5);
+$glass-shadow: 
+  0 8px 32px 0 rgba(31, 38, 135, 0.1),
+  0 2px 8px 0 rgba(31, 38, 135, 0.05);
 $liquid-highlight:
-  inset 0 0 10px rgba(255, 255, 255, 0.3),
-  inset 0 0 2px rgba(255, 255, 255, 0.5);
+  inset 0 0 10px rgba(255, 255, 255, 0.4),
+  inset 0 0 3px rgba(255, 255, 255, 0.6);
 
-$glass-bg-bubble: rgba(255, 255, 255, 0.45);
-$glass-border-bubble: rgba(255, 255, 255, 0.6);
+$tooltip-bg: rgba(255, 255, 255, 0.95);
 
 .layout-wrapper {
-  display: block;
-  position: relative;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 50%, #dbeafe 100%);
-}
-
-.sidebar {
-  position: fixed;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-  bottom: auto;
-  height: auto;
-  max-height: 90vh;
-  width: 90px;
-  z-index: 1000;
-
-  background: $glass-bg;
-
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-
-  border: 1px solid $glass-border;
-  border-top: 1px solid rgba(255, 255, 255, 0.6);
-  border-left: 1px solid rgba(255, 255, 255, 0.6);
-
-  border-radius: 35px;
-  box-shadow: $glass-shadow, $liquid-highlight;
-
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 2rem 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 50%, #dbeafe 100%);
+  font-family: 'Segoe UI', sans-serif;
+}
 
-  overflow-y: visible;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+// --- Top Bar (Navbar Flotante) ---
+.top-bar {
+  position: sticky;
+  top: 20px; // Espacio desde arriba al hacer scroll
+  z-index: 1000;
+  
+  // --- AQUI ESTA EL CAMBIO ---
+  // Hacemos que ocupe el 100% menos unos 40px (20px por lado)
+  width: calc(100% - 140px); 
+  // La centramos horizontalmente con 'auto' y damos 20px de margen vertical
+  margin: 20px auto; 
+  // ---------------------------
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  
+  // Efecto Cristal
+  background: $glass-bg;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  
+  border: 1px solid $glass-border;
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px; // Bordes redondeados para el efecto "pastilla"
+  box-shadow: $glass-shadow, $liquid-highlight;
 
   .brand {
-    margin-bottom: 2rem;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
-
     h2 {
       margin: 0;
-      font-size: 0.9rem;
-      letter-spacing: 3px;
-      background: linear-gradient(to bottom, #ffffff, #d1d5db);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      font-weight: 800;
+      background: linear-gradient(to right, #1e3a8a, #3b82f6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-transform: uppercase;
-      font-weight: 800;
-      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
-    }
-
-    .role-badge {
-      display: none;
     }
   }
 
-  .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-    align-items: center;
-  }
-
-  .menu-item {
+  .menu-horizontal {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 18px;
-    color: rgba(255, 255, 255, 0.7);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-
-    .icon {
+    gap: 0.5rem;
+    
+    .menu-item {
       display: flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-    }
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      color: rgba(31, 41, 55, 0.7);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      cursor: pointer;
 
-    .label {
-      position: absolute;
-      left: 65px;
-      top: 50%;
-      transform: translateY(-50%) translateX(-15px);
-
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-
-      background: $glass-bg-bubble;
-      backdrop-filter: blur(15px) saturate(150%);
-      -webkit-backdrop-filter: blur(15px) saturate(150%);
-      border: 1px solid $glass-border-bubble;
-      box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.1),
-        inset 0 0 8px rgba(255, 255, 255, 0.2);
-
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      white-space: nowrap;
-      color: #1f2937;
-      font-weight: 700;
-      font-size: 0.85rem;
-      z-index: 1010;
-
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-      &::before {
-        content: '';
-        position: absolute;
-        left: -6px;
-        top: 50%;
-        transform: translateY(-50%);
-        border-width: 6px 6px 6px 0;
-        border-style: solid;
-        border-color: transparent $glass-border-bubble transparent transparent;
+      .icon {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-    }
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      color: #ffffff;
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(5px);
-
+      // Tooltip inferior
       .label {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(-50%) translateX(0); 
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+        opacity: 0;
+        visibility: hidden;
+        background: $tooltip-bg;
+        backdrop-filter: blur(10px);
+        border: 1px solid white;
+        padding: 4px 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        color: $text-dark;
+        font-size: 0.75rem;
+        font-weight: 600;
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: 1010;
+        transition: all 0.2s ease;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -4px;
+          left: 50%;
+          transform: translateX(-50%) rotate(45deg);
+          width: 8px;
+          height: 8px;
+          background: $tooltip-bg;
+          border-top: 1px solid white;
+          border-left: 1px solid white;
+        }
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        .label {
+          opacity: 1;
+          visibility: visible;
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+
+      &.active {
+        background: white;
+        color: $primary;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 5px;
+          width: 4px;
+          height: 4px;
+          background: $primary;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .search-container input {
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 18px;
+      padding: 0.5rem 1rem;
+      width: 200px;
+      font-size: 0.85rem;
+      color: $text-dark;
+      outline: none;
+      transition: all 0.3s ease;
+
+      &::placeholder { color: $text-secondary; }
+
+      &:focus {
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        border-color: rgba(59, 130, 246, 0.3);
       }
     }
 
-    &.active {
-      background: rgba(255, 255, 255, 0.35);
-      color: #ffffff;
-      box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.1),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.4),
-        inset 0 2px 5px rgba(255, 255, 255, 0.5);
+    .profile-pill {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+      
+      &:hover { transform: scale(1.05); background: white; }
 
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        width: 4px;
-        height: 4px;
-        background: #fff;
+      .avatar-mini {
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
-        box-shadow: 0 0 10px #fff;
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
       }
     }
   }
 }
 
+// Contenido principal
 .content-area {
-  margin-left: 130px;
-  padding: 20px;
-  min-height: 100vh;
-
-  .top-bar {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(8px);
-    padding: 1rem 2rem;
-    border-radius: 20px;
-    margin-bottom: 20px;
-
-    h1 {
-      margin: 0;
-      font-size: 1.25rem;
-      color: #111827;
-      font-weight: 700;
-    }
-  }
-
+  width: 100%;
+  max-width: 1600px; // Un límite opcional para pantallas muy anchas
+  margin: 0 auto;
+  padding: 0 20px 40px 20px; // Padding lateral igual a los márgenes del topbar
+  
   .page-content {
-    padding: 0;
+    // Aquí iría el contenido de tus páginas
+  }
+}
+
+// Mobile
+@media (max-width: 768px) {
+  .top-bar {
+    width: calc(100% - 20px); // Márgenes más pequeños en móvil
+    margin: 10px auto;
+    padding: 0.75rem;
+    
+    .brand h2 { display: none; }
+    .search-container input { width: 120px; &:focus { width: 100%; } }
   }
 }

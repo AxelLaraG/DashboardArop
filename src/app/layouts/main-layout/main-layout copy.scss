@@ -1,70 +1,88 @@
-// Variables
-$bg-dark: #121212; // Fondo muy oscuro
-$glass-bg: rgba(255, 255, 255, 0.05); // Fondo cristal
-$glass-border: rgba(255, 255, 255, 0.1); // Borde cristal
+$primary: #2563eb;
+$bg-light: #f3f4f6;
 $text-primary: #ffffff;
 $text-secondary: #a1a1aa;
-$accent-color: #f97316; // Naranja para alertas/acentos
-$success-color: #22c55e;
+$text-white: #ffffff;
+
+$glass-bg: rgba(255, 255, 255, 0.15);
+$glass-border: rgba(255, 255, 255, 0.4);
+$glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+$liquid-highlight:
+  inset 0 0 10px rgba(255, 255, 255, 0.3),
+  inset 0 0 2px rgba(255, 255, 255, 0.5);
+
+$glass-bg-bubble: rgba(255, 255, 255, 0.45);
+$glass-border-bubble: rgba(255, 255, 255, 0.6);
 
 .layout-wrapper {
-  display: flex;
+  display: block;
+  position: relative;
   min-height: 100vh;
-  background-color: $bg-dark;
-  color: $text-primary;
-  font-family: 'Inter', sans-serif; // Asegurar fuente moderna si está disponible
-  overflow: hidden; // Evitar scroll en el body si el contenido hace scroll
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 50%, #dbeafe 100%);
 }
 
-// --- Sidebar ---
 .sidebar {
   position: fixed;
-  top: 20px;
+  top: 50%;
   left: 20px;
-  bottom: 20px;
-  width: 80px; // Sidebar colapsado/estrecho como en la imagen
+  transform: translateY(-50%);
+  bottom: auto;
+  height: auto;
+  max-height: 90vh;
+  width: 90px;
   z-index: 1000;
 
-  // Glassmorphism
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: $glass-bg;
+
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+
   border: 1px solid $glass-border;
-  border-radius: 24px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
+
+  border-radius: 35px;
+  box-shadow: $glass-shadow, $liquid-highlight;
 
   display: flex;
   flex-direction: column;
-  align-items: center; // Centrar items
-  padding: 1.5rem 0;
+  align-items: center;
+  padding: 2rem 0;
+
+  overflow-y: visible;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .brand {
     margin-bottom: 2rem;
-    writing-mode: vertical-rl; // Texto vertical como en la imagen "NAVBAR"
+    writing-mode: vertical-rl;
     text-orientation: mixed;
-    transform: rotate(180deg); // Ajuste para lectura de abajo a arriba si se desea
+    transform: rotate(180deg);
 
     h2 {
       margin: 0;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      color: $text-secondary;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      background: linear-gradient(to bottom, #ffffff, #d1d5db);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 800;
+      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
     }
 
     .role-badge {
       display: none;
     }
-
-    // Ocultar badge en modo colapsado
   }
 
   .menu {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     width: 100%;
     align-items: center;
   }
@@ -73,168 +91,175 @@ $success-color: #22c55e;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    color: $text-secondary;
-    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    border-radius: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
 
     .icon {
-      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .label {
+      position: absolute;
+      left: 65px;
+      top: 50%;
+      transform: translateY(-50%) translateX(-15px);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      background: $glass-bg-bubble;
+      backdrop-filter: blur(15px) saturate(150%);
+      -webkit-backdrop-filter: blur(15px) saturate(150%);
+      border: 1px solid $glass-border-bubble;
+      box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 0 8px rgba(255, 255, 255, 0.2);
+
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      color: #1f2937;
+      font-weight: 700;
+      font-size: 0.85rem;
+      z-index: 1010;
+
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 6px 6px 6px 0;
+        border-style: solid;
+        border-color: transparent $glass-border-bubble transparent transparent;
+      }
     }
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: $text-primary;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+
+      .label {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) translateX(0); 
+      }
     }
 
     &.active {
-      background: rgba(255, 255, 255, 0.15);
-      color: $text-primary;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-  }
+      background: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+        inset 0 2px 5px rgba(255, 255, 255, 0.5);
 
-  .footer {
-    margin-top: auto;
-
-    .user-info {
-      .avatar {
-        width: 40px;
-        height: 40px;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        width: 4px;
+        height: 4px;
+        background: #fff;
         border-radius: 50%;
-        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 0.9rem;
-        cursor: pointer;
+        box-shadow: 0 0 10px #fff;
       }
-
-      .details {
-        display: none;
-      }
-
-      // Ocultar detalles en modo colapsado
     }
   }
 }
 
-// --- Content ---
 .content-area {
-  flex: 1;
-  margin-left: 120px; // Espacio para el sidebar (80px + 20px gap + 20px left)
-  padding: 20px 20px 20px 0; // Padding derecho e inferior
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow-y: auto; // Scroll en el contenido
+  margin-left: 130px;
+  padding: 20px;
+  min-height: 100vh;
 
   .top-bar {
+    background: $glass-bg;
+    
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+
+    border: 1px solid $glass-border;
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+
+    box-shadow: $glass-shadow, $liquid-highlight;
+    border-radius: 35px; 
+
+    padding: 1rem 2rem;
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    // Glassmorphism
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid $glass-border;
-    border-radius: 20px; // Pill shape
-    padding: 0.75rem 1.5rem;
-    margin-bottom: 30px;
+    h1 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: #1f2937;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+    }
 
-    .search-container {
-      flex: 1;
-      max-width: 400px;
+    .search-container input {
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      color: #374151;
+      outline: none;
+      transition: all 0.3s ease;
+      
+      &::placeholder {
+        color: #6b7280;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
 
-      input {
-        width: 100%;
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
-        border-radius: 8px;
-        padding: 10px 16px;
-        color: $text-primary;
-        font-size: 0.9rem;
-        outline: none;
-        transition: background 0.2s;
-
-        &::placeholder {
-          color: rgba(255, 255, 255, 0.4);
-          text-transform: uppercase;
-          font-size: 0.8rem;
-          letter-spacing: 1px;
-        }
-
-        &:focus {
-          background: rgba(255, 255, 255, 0.15);
-        }
+      &:focus {
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
       }
     }
 
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-
-      .notification-btn {
-        background: none;
-        border: none;
-        color: $text-primary;
-        cursor: pointer;
-        position: relative;
-
-        i {
-          font-size: 1.2rem;
-        }
-
-        &::after {
-          content: '';
-          position: absolute;
-          top: -2px;
-          right: -2px;
-          width: 8px;
-          height: 8px;
-          background: $accent-color;
-          border-radius: 50%;
-        }
-      }
-
-      .profile-pill {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 6px 16px;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: background 0.2s;
-
-        &:hover {
-          background: rgba(255, 255, 255, 0.15);
-        }
-
-        span {
-          font-size: 0.85rem;
-          font-weight: 500;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .avatar-mini {
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          background: #6366f1;
-        }
-      }
+    .profile-pill {
+       background: rgba(255,255,255,0.3);
+       border-radius: 20px;
+       border: 1px solid rgba(255,255,255,0.4);
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       cursor: pointer;
+       
+       span {
+         font-size: 0.8rem;
+         font-weight: 700;
+         color: #374151;
+       }
+       
+       .avatar-mini {
+         width: 30px;
+         height: 30px;
+         border-radius: 50%;
+         background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+       }
     }
   }
 
   .page-content {
-    flex: 1;
-    // El contenido de las páginas también necesitará ajustes para dark mode, 
-    // pero eso depende de cada componente. Aquí aseguramos el contenedor.
+    padding: 0;
   }
 }

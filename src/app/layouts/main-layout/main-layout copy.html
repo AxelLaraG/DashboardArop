@@ -1,11 +1,6 @@
 <div class="layout-wrapper">
-  <header class="top-bar">
-    
-    <div class="brand">
-      <h2>MUEBLES AROP</h2>
-    </div>
-
-    <nav class="menu-horizontal">
+  <aside class="sidebar">
+    <nav class="menu">
       @for (item of menuItems(); track item.label) {
       <a
         [routerLink]="item.route"
@@ -14,25 +9,25 @@
         class="menu-item"
       >
         <div class="icon" [innerHTML]="item.icon"></div>
-        
         <span class="label">{{ item.label }}</span>
       </a>
       }
     </nav>
-
-    <div class="actions">
-      <div class="search-container">
-        <input type="text" placeholder="Buscar..." />
-      </div>
-
-      <div class="profile-pill">
-        <div class="avatar-mini"></div>
-      </div>
-    </div>
-
-  </header>
+  </aside>
 
   <main class="content-area">
+    <header class="top-bar">
+      <div class="search-container">
+        <input type="text" placeholder="Buscar" />
+      </div>
+
+      <div class="actions">
+        <div class="profile-pill">
+          <div class="avatar-mini"></div>
+        </div>
+      </div>
+    </header>
+
     <div class="page-content">
       <router-outlet />
     </div>
