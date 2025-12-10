@@ -118,3 +118,65 @@
     }
   }
 }
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.charts-grid {
+  display: grid;
+  // Mismo comportamiento responsive: mínimo 300px, flexible
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.chart-card {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 1.5rem;
+  // Reducimos la altura mínima de la tarjeta para que se ajuste al gráfico más pequeño
+  min-height: 320px; 
+
+  .chart-header {
+    margin-bottom: 0.5rem; // Menos margen
+    h3 {
+      margin: 0;
+      font-size: 1rem; // Texto un poco más pequeño para armonizar
+      font-weight: 700;
+      color: #1f2937;
+    }
+    p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+  }
+
+  .chart-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    // CAMBIO IMPORTANTE: Controlar el tamaño del gráfico aquí
+    apx-chart {
+      width: 100%;
+      max-width: 260px; // <--- ESTO hará que la gráfica se vea "pequeña" y centrada
+      display: block;   // Asegura que el margen auto funcione
+      margin: 0 auto;   // Centrado horizontal
+    }
+  }
+
+  .chart-footer {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #f3f4f6;
+    font-size: 0.8rem;
+    color: #6b7280;
+    text-align: center;
+
+    .text-green {
+      color: #10b981;
+    }
+  }
+}
