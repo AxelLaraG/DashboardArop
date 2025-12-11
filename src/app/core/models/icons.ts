@@ -100,5 +100,25 @@ export const icons = {
       height="100%"
       width="100%"
     ></animated-icons>
+  `,
+  settings: `
+    <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+    <animated-icons
+      src="https://animatedicons.co/get-icon?name=setting&style=minimalistic&token=dca75500-0e08-4c4f-b3f9-78b4fe6c03df"
+      trigger="loop"
+      attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#000000","group-2":"#536DFE","background":"#FFFFFF"}}'
+      height="100%"
+      width="100%"
+    ></animated-icons>
+  `,
+  logout: `
+    <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+    <animated-icons
+      src="https://animatedicons.co/get-icon?name=exit&style=minimalistic&token=6e09845f-509a-4b0a-a8b0-c47e168ad977"
+      trigger="loop"
+      attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#000000","group-2":"#FE5353FF","background":"#FFFFFF"}}'
+      height="100%"
+      width="100%"
+    ></animated-icons>
   `
 };

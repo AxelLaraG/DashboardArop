@@ -1,35 +1,42 @@
-import { Component, ChangeDetectionStrategy, inject, computed, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  inject,
+  computed,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { Auth } from '../../core/services/auth';
 import { icons } from '../../core/models/icons';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-interface MenuItem { 
-  label: string,
-  route: string,
-  icon: SafeHtml
+interface MenuItem {
+  label: string;
+  route: string;
+  icon: SafeHtml;
 }
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-
 export class MainLayout {
   private readonly auth = inject(Auth);
   private readonly sanitizer = inject(DomSanitizer);
-  
+
   readonly user = this.auth.currentUser;
-  
-  private getIcon(htmlString: string): SafeHtml { 
+  protected icons = icons;
+  protected isMenuOpen = false;
+
+  protected getIcon(htmlString: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(htmlString);
   }
-  
+
   readonly menuItems = computed<MenuItem[]>(() => {
     if (this.auth.isAdmin()) {
       return [
@@ -37,19 +44,28 @@ export class MainLayout {
         { label: 'Usuarios', route: '/dashboard/users', icon: this.getIcon(icons.users) },
         { label: 'Tiendas', route: '/dashboard/stores', icon: this.getIcon(icons.store) },
         { label: 'Productos', route: '/dashboard/products', icon: this.getIcon(icons.productos) },
-        { label: 'Pedidos', route: '/dashboard/orders', icon: this.getIcon(icons.pedidos) }
+        { label: 'Pedidos', route: '/dashboard/orders', icon: this.getIcon(icons.pedidos) },
       ];
-    } else { 
+    } else {
       return [
         { label: 'Dashboard', route: '/dashboard', icon: this.getIcon(icons.dashboard) },
         { label: 'Tienda', route: '/dashboard/store', icon: this.getIcon(icons.store) },
         { label: 'Productos', route: '/dashboard/products', icon: this.getIcon(icons.productos) },
-        { label: 'Pedidos', route: '/dashboard/orders', icon: this.getIcon(icons.pedidos) }
+        { label: 'Pedidos', route: '/dashboard/orders', icon: this.getIcon(icons.pedidos) },
       ];
     }
   });
-  
-  logout(): void { 
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
+  }
+
+  logout(): void {
     this.auth.logout();
+    this.closeMenu();
   }
 }

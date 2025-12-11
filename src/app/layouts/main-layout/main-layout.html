@@ -1,6 +1,5 @@
 <div class="layout-wrapper">
   <header class="top-bar">
-    
     <div class="brand">
       <h2>MUEBLES AROP</h2>
     </div>
@@ -14,7 +13,6 @@
         class="menu-item"
       >
         <div class="icon" [innerHTML]="item.icon"></div>
-        
         <span class="label">{{ item.label }}</span>
       </a>
       }
@@ -25,11 +23,38 @@
         <input type="text" placeholder="Buscar..." />
       </div>
 
-      <div class="profile-pill">
-        <div class="avatar-mini"></div>
+      <div class="user-menu-wrapper">
+        <div class="profile-pill" (click)="toggleMenu()" [class.active]="isMenuOpen">
+          <div class="avatar-mini"></div>
+        </div>
+
+        <div class="menu-backdrop" [class.show]="isMenuOpen" (click)="closeMenu()"></div>
+
+        <div class="user-menu" [class.show]="isMenuOpen">
+          <div class="menu-header">
+            <div class="avatar-large">{{ user()?.name?.charAt(0) || 'U' }}</div>
+            <div class="user-info">
+              <span class="user-name">{{ user()?.name || 'Usuario' }}</span>
+              <span class="user-email">{{ user()?.email || 'usuario@correo.com' }}</span>
+            </div>
+          </div>
+
+          <div class="menu-divider"></div>
+
+          <button class="menu-option" (click)="closeMenu()">
+            <div class="icon-box" [innerHTML]="getIcon(icons.settings)"></div>
+            <span>Configuraciones</span>
+          </button>
+
+          <div class="menu-divider"></div>
+
+          <button class="menu-option logout" (click)="logout()">
+            <div class="icon-box" [innerHTML]="getIcon(icons.logout)"></div>
+            <span>Cerrar sesión</span>
+          </button>
+        </div>
       </div>
     </div>
-
   </header>
 
   <main class="content-area">
