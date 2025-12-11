@@ -1,0 +1,60 @@
+<div class="card table-container">
+  <div class="table-header">
+    <div class="header-title">
+      <h3>{{ title() }}</h3>
+      <span class="badge">{{ users().length }}</span>
+    </div>
+
+    <button class="btn-action btn-add" (click)="add.emit()" title="Agregar nuevo usuario">
+      <div class="icon-wrapper" [innerHTML]="iconAdd"></div>
+    </button>
+  </div>
+
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Correo</th>
+          <th>Estado</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users(); track user.id) {
+        <tr>
+          <td>
+            <div class="user-info">
+              <div class="avatar-mini">{{ user.name.charAt(0) }}</div>
+              <div class="name-col">
+                <span class="font-bold">{{ user.name }} {{ user.firstSurname }}</span>
+              </div>
+            </div>
+          </td>
+          <td class="text-secondary">{{ user.email }}</td>
+          <td>
+            <span class="status-pill" [class.active]="user.status === 'ACTIVO'">
+              {{ user.status }}
+            </span>
+          </td>
+          <td>
+            <div class="actions-cell">
+              <button class="btn-icon" (click)="edit.emit(user)" title="Editar usuario">
+                <div class="icon-mini" [innerHTML]="iconEdit"></div>
+              </button>
+
+              <button class="btn-icon delete" (click)="delete.emit(user)" title="Eliminar usuario">
+                <div class="icon-mini" [innerHTML]="iconDelete"></div>
+              </button>
+            </div>
+          </td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="5" class="empty-state">No hay usuarios en esta categoría.</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

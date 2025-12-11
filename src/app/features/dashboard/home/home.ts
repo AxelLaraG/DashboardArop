@@ -31,15 +31,15 @@ export class Home {
           delivered: 450,
           shipped: 200,
           pending: 150,
-          cancelled: 50
+          cancelled: 50,
         },
         payments: {
-          paid:75,
+          paid: 75,
           pending: 25,
-          recovery: 5.2
-        }
+          recovery: 5.2,
+        },
       };
-    } else { 
+    } else {
       return {
         title: 'Estadísticas de la tienda',
         sales: 12300.0,
@@ -49,13 +49,13 @@ export class Home {
           delivered: 20,
           shipped: 15,
           pending: 5,
-          cancelled: 1
+          cancelled: 1,
         },
         payments: {
-          paid:65,
+          paid: 65,
           pending: 40,
-          recovery: 2.1
-        }
+          recovery: 2.1,
+        },
       };
     }
   });

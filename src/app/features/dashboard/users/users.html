@@ -1,0 +1,14 @@
+<section class="users-container">
+  <div class="page-header">
+    <h2>Gestión de Usuarios</h2>
+    <p>Visualiza y administra los roles del sistema</p>
+  </div>
+
+  <div class="tables-grid">
+    <app-user-table title="Administradores" [users]="adminUsers()"> </app-user-table>
+
+    <app-user-table title="Vendedores (Dueños de Tienda)" [users]="ownerUsers()"> </app-user-table>
+
+    <app-user-table title="Usuarios Comunes (Clientes)" [users]="clientUsers()"> </app-user-table>
+  </div>
+</section>

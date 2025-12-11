@@ -70,5 +70,35 @@ export const icons = {
       height="100%"
       width="100%"
     ></animated-icons>
+  `,
+  edit: `
+    <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+    <animated-icons
+      src="https://animatedicons.co/get-icon?name=Edit%20V2&style=minimalistic&token=bef79568-d828-4e67-a904-60a1bb446375"
+      trigger="loop-on-hover"
+      attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#000000","group-2":"#536DFE","background":"#FFFFFF"}}'
+      height="100%"
+      width="100%"
+    ></animated-icons>
+  `,
+  add: `
+    <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+    <animated-icons
+      src="https://animatedicons.co/get-icon?name=plus&style=minimalistic&token=3a3309ff-41ae-42ce-97d0-5767a4421b43"
+      trigger="loop-on-hover"
+      attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#000000","group-2":"#536DFE","background":"#FFFFFF"}}'
+      height="100%"
+      width="100%"
+    ></animated-icons>
+  `,
+  delete: `
+    <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+    <animated-icons
+      src="https://animatedicons.co/get-icon?name=delete&style=minimalistic&token=c1352b7b-2e14-4124-b8fd-a064d7e44225"
+      trigger="loop-on-hover"
+      attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#000000","group-2":"#536DFE","background":"#FFFFFF"}}'
+      height="100%"
+      width="100%"
+    ></animated-icons>
   `
 };
