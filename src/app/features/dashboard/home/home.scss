@@ -1,5 +1,3 @@
-// src/app/features/dashboard/home/home.scss
-
 .welcome-banner {
   margin-bottom: 2rem;
   h2 {
@@ -16,107 +14,8 @@
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 380px));
-  gap: 20% 20%;
+  gap: 20% 20%; // Ajusta según necesites
   justify-content: center;
-}
-
-.card {
-  background: white;
-  border-radius: 16px; // Bordes un poco más suaves
-  padding: 1.5rem;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  display: flex;
-  align-items: flex-start; // Alineación superior para mejor estructura con subtítulos
-  gap: 1.25rem;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  }
-
-  // Contenedor para los iconos animados (icons.ts)
-  .icon-wrapper {
-    width: 56px;
-    height: 56px;
-    min-width: 56px; // Evitar que se aplaste
-    border-radius: 16px;
-    background: #f3f4f6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px; // Padding interno para el SVG
-
-    // Ajuste para que el animated-icon llene el espacio
-    ::ng-deep animated-icons {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  // Estilo antiguo para los emojis (ganancias/pedidos)
-  .icon-emoji {
-    font-size: 2rem;
-    background: #f3f4f6;
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .info {
-    flex: 1;
-
-    h3 {
-      margin: 0 0 0.5rem;
-      font-size: 0.9rem;
-      color: #6b7280;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .value {
-      margin: 0;
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: #111827;
-      line-height: 1.2;
-    }
-
-    // Colores específicos solicitados
-    .text-green {
-      color: #10b981; // Verde esmeralda vibrante
-    }
-
-    .text-orange {
-      color: #f56e6d; // Naranja ambar
-    }
-
-    // Subtexto "15% más..."
-    .subtext {
-      margin-top: 0.5rem;
-      font-size: 0.8rem;
-      color: #9ca3af;
-
-      .trend-up {
-        color: #10b981;
-        font-weight: 700;
-      }
-    }
-
-    small {
-      display: block;
-      margin-top: 0.25rem;
-      font-size: 0.8rem;
-      color: #9ca3af;
-    }
-  }
 }
 
 .mb-8 {
@@ -125,58 +24,6 @@
 
 .charts-grid {
   display: grid;
-  // Mismo comportamiento responsive: mínimo 300px, flexible
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
-}
-
-.chart-card {
-  flex-direction: column;
-  align-items: stretch;
-  padding: 1.5rem;
-  // Reducimos la altura mínima de la tarjeta para que se ajuste al gráfico más pequeño
-  min-height: 320px; 
-
-  .chart-header {
-    margin-bottom: 0.5rem; // Menos margen
-    h3 {
-      margin: 0;
-      font-size: 1rem; // Texto un poco más pequeño para armonizar
-      font-weight: 700;
-      color: #1f2937;
-    }
-    p {
-      margin: 0;
-      font-size: 0.8rem;
-      color: #6b7280;
-    }
-  }
-
-  .chart-body {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    // CAMBIO IMPORTANTE: Controlar el tamaño del gráfico aquí
-    apx-chart {
-      width: 100%;
-      max-width: 260px; // <--- ESTO hará que la gráfica se vea "pequeña" y centrada
-      display: block;   // Asegura que el margen auto funcione
-      margin: 0 auto;   // Centrado horizontal
-    }
-  }
-
-  .chart-footer {
-    margin-top: 0.5rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid #f3f4f6;
-    font-size: 0.8rem;
-    color: #6b7280;
-    text-align: center;
-
-    .text-green {
-      color: #10b981;
-    }
-  }
 }

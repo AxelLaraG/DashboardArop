@@ -1,149 +1,62 @@
 import { Component, ChangeDetectionStrategy, inject, computed } from '@angular/core';
 import { Auth } from '../../../core/services/auth';
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { icons } from '../../../core/models/icons';
-import {
-  NgApexchartsModule,
-  ApexChart,
-  ApexNonAxisChartSeries,
-  ApexResponsive,
-  ApexPlotOptions,
-  ApexLegend,
-  ApexDataLabels,
-  ApexStroke,
-  ApexFill,
-} from 'ng-apexcharts';
 
-export type ChartOptions = {
-  series: ApexNonAxisChartSeries;
-  chart: ApexChart;
-  responsive: ApexResponsive[];
-  labels: any;
-  plotOptions: ApexPlotOptions;
-  legend: ApexLegend;
-  dataLabels: ApexDataLabels;
-  colors: string[];
-  stroke: ApexStroke;
-  fill: ApexFill;
-};
+import { OrderChart } from '../components/order-chart/order-chart';
+import { PaymentChart } from '../components/payment-chart/payment-chart';
+import { StatsCard } from '../components/stats-card/stats-card';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CurrencyPipe, NgApexchartsModule],
+  imports: [CurrencyPipe, OrderChart, PaymentChart, StatsCard],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
   private readonly auth = inject(Auth);
-  private readonly sanitizer = inject(DomSanitizer);
-
   readonly isAdmin = this.auth.isAdmin;
+  readonly icons = icons;
 
-  private getIcon(htmlString: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(htmlString);
-  }
-
-  readonly iconSales = this.getIcon(icons.money);
-  readonly iconAlert = this.getIcon(icons.warning);
-
-  //Mock Datra
   readonly stats = computed(() => {
     if (this.isAdmin()) {
       return {
         title: 'Estadísticas de todas las tiendas',
         sales: 150450.0,
         profits: 45200.0,
-        orders: 1250,
-        pendingOrders: 45,
         inventoryAlerts: 12,
+        orders: {
+          delivered: 450,
+          shipped: 200,
+          pending: 150,
+          cancelled: 50
+        },
+        payments: {
+          paid:75,
+          pending: 25,
+          recovery: 5.2
+        }
       };
-    } else {
+    } else { 
       return {
-        title: 'Estadísticas de Mi Tienda',
+        title: 'Estadísticas de la tienda',
         sales: 12300.0,
         profits: 3400.0,
-        orders: 85,
-        pendingOrders: 3,
         inventoryAlerts: 2,
+        orders: {
+          delivered: 20,
+          shipped: 15,
+          pending: 5,
+          cancelled: 1
+        },
+        payments: {
+          paid:65,
+          pending: 40,
+          recovery: 2.1
+        }
       };
     }
   });
-
-  readonly orderChartOptions: Partial<ChartOptions> = {
-    series: [450, 200, 150, 50], // Datos Mock: Entregado, Enviado, Pendiente, Cancelado
-    chart: {
-      type: 'donut',
-      height: 300,
-      fontFamily: 'Segoe UI, sans-serif',
-    },
-    labels: ['Entregado', 'Enviado', 'Pendiente', 'Cancelado'],
-    colors: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'], // Verde, Azul, Naranja, Rojo
-    plotOptions: {
-      pie: {
-        donut: {
-          size: '70%',
-          labels: {
-            show: true,
-            total: {
-              show: true,
-              label: 'Pedidos',
-              color: '#6b7280',
-              formatter: function (w) {
-                return w.globals.seriesTotals.reduce((a: any, b: any) => a + b, 0);
-              },
-            },
-            value: {
-              fontSize: '24px',
-              fontWeight: 700,
-              color: '#1f2937',
-            },
-          },
-        },
-      },
-    },
-    dataLabels: { enabled: false },
-    stroke: { show: false },
-    legend: { position: 'bottom' },
-  };
-
-  readonly paymentChartOptions: Partial<ChartOptions> = {
-    series: [75, 25], // 75% Cobrado, 25% Pendiente
-    chart: {
-      type: 'donut',
-      height: 300,
-      fontFamily: 'Segoe UI, sans-serif',
-    },
-    labels: ['Cobrados', 'Pendientes'],
-    colors: ['#10b981', '#ef4444'], // Verde (Cobrado), Rojo (Pendiente)
-    plotOptions: {
-      pie: {
-        startAngle: -90,
-        endAngle: 90,
-        offsetY: 10,
-        donut: {
-          size: '75%',
-          labels: {
-            show: true,
-            name: { show: true, offsetY: -20 },
-            value: { show: true, offsetY: -10, fontSize: '22px', fontWeight: 700 },
-            total: {
-              show: true,
-              label: 'Total Realizado',
-              color: '#6b7280',
-              fontSize: '14px',
-              formatter: () => '75%', // Mock porcentaje total
-            },
-          },
-        },
-      },
-    },
-    dataLabels: { enabled: false },
-    stroke: { show: false },
-    legend: { position: 'bottom' },
-    // Fondo gris para simular el track de la barra radial si fuera necesario
-    fill: { opacity: 1 },
-  };
 }

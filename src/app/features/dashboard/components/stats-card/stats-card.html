@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="icon-wrapper" [innerHTML]="safeIcon()"></div>
+  <div class="info">
+    <h3>{{ title() }}</h3>
+    <div class="value-container">
+      <p class="value" [class]="valueColorClass()">{{ value() }}</p>
+    </div>
+    <p class="subtext">
+      @if(trend()) { <span class="trend-up">{{ trend() }}</span> } {{ subtext() }}
+    </p>
+  </div>
+</div>

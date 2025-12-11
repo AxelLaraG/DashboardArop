@@ -1,0 +1,22 @@
+<div class="card chart-card">
+  <div class="chart-header">
+    <h3>Progreso de Cobros</h3>
+    <p>Pagado vs Pendiente</p>
+  </div>
+  <div class="chart-body">
+    <apx-chart
+      [series]="series()"
+      [chart]="chart"
+      [labels]="labels"
+      [colors]="colors"
+      [plotOptions]="plotOptions"
+      [legend]="legend"
+      [dataLabels]="{ enabled: false }"
+      [stroke]="{ show: false }"
+      [fill]="{ opacity: 1 }"
+    ></apx-chart>
+  </div>
+  <div class="chart-footer">
+    <span class="text-green font-bold">▲ {{ recoveryRate() }}%</span> de recuperación
+  </div>
+</div>
