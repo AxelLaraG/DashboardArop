@@ -1,5 +1,5 @@
 import { Component, input, ChangeDetectionStrategy, inject, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { User } from '../../../../core/models/database';
 import { icons } from '../../../../core/models/icons';
@@ -7,7 +7,7 @@ import { icons } from '../../../../core/models/icons';
 @Component({
   selector: 'app-user-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './user-table.html',
   styleUrl: './user-table.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
