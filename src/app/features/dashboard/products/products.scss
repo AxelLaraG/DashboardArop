@@ -1,0 +1,30 @@
+.products-container {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #1f2937; // $text-dark
+  }
+  p {
+    margin: 5px 0 0;
+    color: #6b7280; // $text-secondary
+  }
+}
+
+.tables-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; // Espacio entre las tablas
+}
+
+.alerts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 380px));
+  gap: 20% 20%; // Ajusta según necesites
+  justify-content: center;
+  margin-bottom: 3%;
+}

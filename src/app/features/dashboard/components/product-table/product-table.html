@@ -1,0 +1,90 @@
+<div class="card table-container">
+  <div class="table-header">
+    <div class="header-title">
+      <h3>{{ title() }}</h3>
+      <span class="badge">{{ products().length }}</span>
+    </div>
+
+    <div class="header-actions" style="display: flex; gap: 0.5rem">
+      <button class="btn-action btn-store" (click)="viewAll.emit()" title="Ver todos">
+        <div class="icon-wrapper" [innerHTML]="iconStore"></div>
+      </button>
+
+      <button class="btn-action btn-add" (click)="add.emit()" title="Agregar nuevo producto">
+        <div class="icon-wrapper" [innerHTML]="iconAdd"></div>
+      </button>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Stock</th>
+          <th>Descripción</th>
+          <th>Alertas</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of products(); track product.id) {
+          <tr>
+            <td>
+              <div class="user-info">
+                <div class="avatar-mini" style="background-color: #e0e7ff; color: #536dfe">
+                  {{ product.name.charAt(0) }}
+                </div>
+                <div class="name-col">
+                  <span class="font-bold">{{ product.name }}</span>
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <span class="font-bold">{{ product.stock }}</span> u.
+            </td>
+
+            <td
+              class="text-secondary"
+              style="
+                max-width: 150px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              "
+            >
+              {{ product.shortDesc }}
+            </td>
+
+            <td>
+              @if (product['stockWarn'] && product['stockWarn'] > 0) {
+                <span class="status-pill" style="background-color: #ffebee; color: #d32f2f">
+                  {{ product['stockWarn'] }}
+                </span>
+              } @else {
+                <span class="text-muted">-</span>
+              }
+            </td>
+
+            <td>
+              <div class="actions-cell">
+                <button class="btn-icon" (click)="edit.emit(product)" title="Editar">
+                  <div class="icon-mini" [innerHTML]="iconEdit"></div>
+                </button>
+
+                <button class="btn-icon delete" (click)="delete.emit(product)" title="Eliminar">
+                  <div class="icon-mini" [innerHTML]="iconDelete"></div>
+                </button>
+              </div>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="empty-state">No hay productos recientes.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

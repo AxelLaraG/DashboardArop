@@ -1,0 +1,32 @@
+<section class="products-container">
+  <div class="page-header">
+    <h2>Gestión de Productos</h2>
+    <p class="text-secondary">Supervisa el inventario y las alertas por tienda</p>
+  </div>
+
+  @if (alertCards().length > 0) {
+    <div class="alerts-grid">
+      @for (card of alertCards(); track card.storeName) {
+        <app-stats-card
+          [title]="card.storeName"
+          [value]="card.warnings"
+          subtext="Alertas de Stock"
+          [iconHtml]="iconWarning"
+          valueColorClass="text-danger"
+        ></app-stats-card>
+      }
+    </div>
+  }
+
+  <div class="tables-grid">
+    @for (storeData of tablesData(); track storeData.storeId) {
+      <app-product-table
+        [title]="storeData.storeName"
+        [products]="storeData.products"
+        (add)="handleAction('Agregar', storeData.storeName)"
+        (viewAll)="handleAction('Ver Todo', storeData.storeName)"
+      >
+      </app-product-table>
+    }
+  </div>
+</section>
