@@ -120,5 +120,15 @@ export const icons = {
       height="100%"
       width="100%"
     ></animated-icons>
-  `
+  `,
+  shop: `
+  <script src="https://animatedicons.co/scripts/embed-animated-icons.js"></script>
+  <animated-icons
+    src="https://animatedicons.co/get-icon?name=shopping&style=minimalistic&token=1a426870-e168-49f4-b12a-f584dc9f311e"
+    trigger="loop-on-hover"
+    attributes='{"variationThumbColour":"#536DFE","variationName":"Two Tone","variationNumber":2,"numberOfGroups":2,"backgroundIsGroup":false,"strokeWidth":1,"defaultColours":{"group-1":"#000000","group-2":"#536DFE","background":"#FFFFFF"}}'
+    height="100%"
+    width="100%"
+  ></animated-icons>
+  `,
 };
