@@ -45,6 +45,7 @@ export class MainLayout {
         { label: 'Tiendas', route: '/dashboard/stores', icon: this.getIcon(icons.store) },
         { label: 'Productos', route: '/dashboard/products', icon: this.getIcon(icons.productos) },
         { label: 'Pedidos', route: '/dashboard/orders', icon: this.getIcon(icons.pedidos) },
+        { label: 'Tienda Online', route: '/store', icon: this.getIcon(icons.shop)},
       ];
     } else {
       return [
@@ -52,6 +53,7 @@ export class MainLayout {
         { label: 'Tienda', route: '/dashboard/store', icon: this.getIcon(icons.store) },
         { label: 'Productos', route: '/dashboard/products', icon: this.getIcon(icons.productos) },
         { label: 'Pedidos', route: '/dashboard/orders', icon: this.getIcon(icons.pedidos) },
+        { label: 'Tienda Online', route: '/store', icon: this.getIcon(icons.shop)},
       ];
     }
   });
