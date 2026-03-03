@@ -42,7 +42,7 @@ export class MainLayout {
       return [
         { label: 'Dashboard', route: '/dashboard', icon: this.getIcon(icons.dashboard) },
         { label: 'Usuarios', route: '/dashboard/users', icon: this.getIcon(icons.users) },
-        { label: 'Tiendas', route: '/dashboard/stores', icon: this.getIcon(icons.store) },
+        { label: 'Tiendas', route: '/dashboard/shops', icon: this.getIcon(icons.store) },
         { label: 'Productos', route: '/dashboard/products', icon: this.getIcon(icons.productos) },
         { label: 'Pedidos', route: '/dashboard/orders', icon: this.getIcon(icons.pedidos) },
         { label: 'Tienda Online', route: '/store', icon: this.getIcon(icons.shop)},
@@ -50,7 +50,7 @@ export class MainLayout {
     } else {
       return [
         { label: 'Dashboard', route: '/dashboard', icon: this.getIcon(icons.dashboard) },
-        { label: 'Tienda', route: '/dashboard/store', icon: this.getIcon(icons.store) },
+        { label: 'Tienda', route: '/dashboard/shop', icon: this.getIcon(icons.store) },
         { label: 'Productos', route: '/dashboard/products', icon: this.getIcon(icons.productos) },
         { label: 'Pedidos', route: '/dashboard/orders', icon: this.getIcon(icons.pedidos) },
         { label: 'Tienda Online', route: '/store', icon: this.getIcon(icons.shop)},

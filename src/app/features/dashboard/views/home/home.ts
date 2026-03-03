@@ -1,11 +1,11 @@
 import { Component, ChangeDetectionStrategy, inject, computed } from '@angular/core';
-import { Auth } from '../../../core/services/auth';
+import { Auth } from '../../../../core/services/auth';
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
-import { icons } from '../../../core/models/icons';
+import { icons } from '../../../../core/models/icons';
 
-import { OrderChart } from '../components/order-chart/order-chart';
-import { PaymentChart } from '../components/payment-chart/payment-chart';
-import { StatsCard } from '../components/stats-card/stats-card';
+import { OrderChart } from '../../components/order-chart/order-chart';
+import { PaymentChart } from '../../components/payment-chart/payment-chart';
+import { StatsCard } from '../../components/stats-card/stats-card';
 
 @Component({
   selector: 'app-home',

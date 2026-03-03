@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { ProductTable } from '../components/product-table/product-table';
-import { StatsCard } from '../components/stats-card/stats-card';
-import { Product, Store } from '../../../core/models/database';
-import { icons } from '../../../core/models/icons';
+import { ProductTable } from '../../components/product-table/product-table';
+import { StatsCard } from '../../components/stats-card/stats-card';
+import { Product, Store } from '../../../../core/models/database';
+import { icons } from '../../../../core/models/icons';
 
 @Component({
   selector: 'app-products',

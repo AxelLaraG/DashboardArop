@@ -30,15 +30,27 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./features/dashboard/home/home').then((m) => m.Home),
+        loadComponent: () => import('./features/dashboard/views/home/home').then((m) => m.Home),
       },
       {
         path: 'users',
-        loadComponent: () => import('./features/dashboard/users/users').then((m) => m.Users),
+        loadComponent: () => import('./features/dashboard/views/users/users').then((m) => m.Users),
       },
       {
         path: 'products',
-        loadComponent: () => import('./features/dashboard/products/products').then((m) => m.Products),
+        loadComponent: () => import('./features/dashboard/views/products/products').then((m) => m.Products),
+      },
+      {
+        path:'shops',
+        loadComponent: () => import('./features/dashboard/views/shops/shops').then((m) => m.Shops),
+      },
+      {
+        path:'shop/:id',
+        loadComponent: () => import('./features/dashboard/views/shop/shop').then((m) => m.Shop),
+      },
+      {
+        path:'orders',
+        loadComponent: () => import('./features/dashboard/views/orders/orders').then((m) => m.Orders),
       },
     ],
   },

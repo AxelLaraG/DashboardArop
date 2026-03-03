@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, signal, computed } from '@angular/core';
-import { UserTable } from '../components/user-table/user-table';
-import { User, UserRole } from '../../../core/models/database';
+import { UserTable } from '../../components/user-table/user-table';
+import { User, UserRole } from '../../../../core/models/database';
 
 @Component({
   selector: 'app-users',
